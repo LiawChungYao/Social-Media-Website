@@ -11,6 +11,15 @@
     --accent: #d3776f;
 }
 
+#calculator {
+  display: flex;
+}
+
+#calculator button {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
 .dark-mode {
     color: #1a091f;
     background-color: #faf3fb;

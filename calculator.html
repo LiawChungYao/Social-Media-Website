@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <script>
+        var text = "";
+
+        function addText(input){
+            text += input;
+            document.getElementById("results").textContent = "Equation: " + text;
+        }
+
+        function clearText(){
+            text="";
+            document.getElementById("results").textContent = "Equation: " + text;
+            calculateQuery();
+        }
+
+        function calculateQuery(){
+            let numbers = [];
+            let symbols = [];
+            let currNum = "";
+
+            for (let i = 0; i <= text.length; i++){
+                if (text[i] >= "0" && text[i] <= "9"){
+                    currNum += text[i];
+                }
+                else {
+                    console.log(currNum);
+                    symbols[symbols.length] = text[i];
+                    numbers[numbers.length] = Number(currNum);
+                    currNum = "";
+                }
+            }
+            
+            results = numbers[0];
+            for (let i = 0; i < symbols.length; i++){
+                switch(symbols[i]){
+                    case "+":
+                        results += numbers[i + 1];
+                        break;
+                    case "-":
+                        results -= numbers[i + 1];
+                        break;
+                    case "*":
+                        results *= numbers[i + 1];
+                        break;
+                    case "/":
+                        results = results / numbers[i + 1];
+                        break;
+                }
+            }
+            document.getElementById("answer").textContent = "Answer: " + results;
+        }
+
+    </script>
+    <div>
+        <h1>Calculator</h1>
+        <div id="calculator">
+            <button onclick="addText('7')">7</button>
+            <button onclick="addText('8')">8</button>
+            <button onclick="addText('9')">9</button>
+            <button onclick="addText('-')">-</button>
+        </div>
+        <div id="calculator">
+            <button onclick="addText('4')">4</button>
+            <button onclick="addText('5')">5</button>
+            <button onclick="addText('6')">6</button>
+            <button onclick="addText('+')">+</button>
+        </div>
+        <div id="calculator">
+            <button onclick="addText('1')">1</button>
+            <button onclick="addText('2')">2</button>
+            <button onclick="addText('3')">3</button>
+            <button onclick="addText('*')">*</button>
+        </div>
+        <div id="calculator">
+            <button onclick="addText('0')">0</button>
+            <button onclick="clearText()">Clear</button>
+            <button onclick="calculateQuery()">Submit</button>
+            <button onclick="addText('/')">/</button>
+        </div>
+    </div>
+    <div>
+        <p id="results">Equation: </p>
+        <p id="answer">Answer: 0</p>
+    </div>
