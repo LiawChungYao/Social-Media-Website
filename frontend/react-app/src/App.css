@@ -40,3 +40,80 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/*
+button {
+  width: clamp(50px, 20vw, 80px);
+  height: clamp(30px, 6vw, 50px);
+  font-size: clamp(14px, 2vw, 18px);
+  text-align: center;
+}
+
+input {
+  width: clamp(120px, 20vw, 250px);
+  height: clamp(40px, 6vw, 60px);
+  font-size: clamp(14px, 2vw, 18px);
+  background: none;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}*/
+
+.userInput {
+  border: 1px solid #383434;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(54, 53, 53);
+  
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.userInput input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 10px;
+  background-color: rgb(54, 53, 53);
+
+  position: relative;
+}
+
+.userInput label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: #ffffff;
+  font-size: clamp(10px, 4vw, 14px);
+
+  pointer-events: none;
+  transition: 0.2s ease;
+  background: transparent;
+}
+
+.userInput input:focus + label,
+.userInput input:valid + label {
+  top: 5px;
+  font-size: 8px;
+  color: #fff;
+  background: transparent;
+  padding: 0;
+}
+
+
+.userInput button{
+  margin: 5px;
+  font-size: clamp(5px, 4vw, 10px);
+  padding: 0;
+  flex-shrink: 0;
+  min-width: 40px;
+}
