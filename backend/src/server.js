@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 // Media Storage Init
 const admin = require("firebase-admin");
-const serviceAccount = require("../serviceAccountKey.json");
+const serviceAccount = require("../serviceAccount.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -112,7 +112,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   console.log("Reached backend");
   console.log(req.body);
-  const {username, password} = req.body;
+  const {username, password, keepSignedIn} = req.body;
 
 
   const sql = "SELECT * FROM users where username = ?";
@@ -137,8 +137,10 @@ app.post("/login", async (req, res) => {
 
       const token = jwt.sign (
         { userId: user.id},
-        "secret_key",
-        { expiresIn: "1h"}
+        process.env.JWT_SECRET,
+        {
+          expiresIn: keepSignedIn ? "7d" : "1h"
+        }
       );
       console.log("Successful");
       res.json({ message: "Login successful", token });
